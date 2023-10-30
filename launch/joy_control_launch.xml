@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="joy_control" exec="joy_control_node" name="joy_control_node" output='screen'/>
+  <node pkg="youbot_driver_wrapper" exec="youbot_driver_wrapper_node" name="youbot_driver_wrapper_node" output='screen'/>
+  <node pkg="joy" exec="joy_node" name="joy_node" output='screen'/>
+</launch>
