@@ -2,4 +2,6 @@
   <node pkg="joy_control" exec="joy_control_node" name="joy_control_node" output='screen'/>
   <node pkg="youbot_driver_wrapper" exec="youbot_driver_wrapper_node" name="youbot_driver_wrapper_node" output='screen'/>
   <node pkg="joy" exec="joy_node" name="joy_node" output='screen'/>
+  <include file="$(find-pkg-share youbot_description)/launch/description.launch.py"/>
+  <include file="$(find-pkg-share ydlidar_ros2_driver)/launch/ydlidar_launch.py"/>
 </launch>
