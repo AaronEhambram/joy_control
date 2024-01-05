@@ -5,4 +5,5 @@
   <include file="$(find-pkg-share youbot_description)/launch/description.launch.py"/>
   <include file="$(find-pkg-share ydlidar_ros2_driver)/launch/ydlidar_launch.py"/>
   <include file="$(find-pkg-share openni2_camera)/launch/camera_only.launch.py"/>
+  <include file="$(find-pkg-share rgbd_calibration)/launch/depth_registration.launch"/>
 </launch>
