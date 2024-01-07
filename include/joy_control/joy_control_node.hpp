@@ -2,6 +2,7 @@
 #include "sensor_msgs/msg/joy.hpp"
 #include "youbot/YouBotBase.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include "sensor_msgs/msg/joint_state.hpp"
 
 using std::placeholders::_1;
 using namespace youbot;
@@ -19,6 +20,10 @@ class JoyController : public rclcpp::Node
     // cmd_vel publisher
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher_;
     geometry_msgs::msg::Twist cmd_vel_msg_;
+
+    // arm state publisher
+    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr arm_joint_state_publisher_;
+    sensor_msgs::msg::JointState arm_joint_state_msg_;
 
     // velocity values
     double longitudinal = 0.0;
