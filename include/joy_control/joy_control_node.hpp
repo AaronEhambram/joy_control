@@ -29,4 +29,8 @@ class JoyController : public rclcpp::Node
     double longitudinal = 0.0;
     double transversal = 0.0;
     double angular = 0.0;
+
+    // Arm joint default
+    const double arm_joint_0_fwd_default_ = 2.965;
+    double arm_joint_0_offset_ = 0.0; 
 };

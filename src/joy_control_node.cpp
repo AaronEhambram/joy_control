@@ -67,10 +67,11 @@ void JoyController::topic_callback(const sensor_msgs::msg::Joy::SharedPtr msg)
     arm_joint_state_msg_.position[5] = 0.0;
     arm_joint_state_msg_.position[6] = 0.0;
     arm_joint_state_publisher_->publish(arm_joint_state_msg_);
+    arm_joint_0_offset_ = 0.0; 
   }
   else if(msg->buttons[2] == 1)
   {
-    arm_joint_state_msg_.position[0] = 2.965;
+    arm_joint_state_msg_.position[0] = arm_joint_0_fwd_default_;
     arm_joint_state_msg_.position[1] = 1.331;
     arm_joint_state_msg_.position[2] = -1.852;
     arm_joint_state_msg_.position[3] = 2.797;
@@ -78,7 +79,41 @@ void JoyController::topic_callback(const sensor_msgs::msg::Joy::SharedPtr msg)
     arm_joint_state_msg_.position[5] = 0.0115;
     arm_joint_state_msg_.position[6] = 0.0115;
     arm_joint_state_publisher_->publish(arm_joint_state_msg_);
+    arm_joint_0_offset_ = 0.0; 
   }
+  else if(msg->buttons[4] == 1)
+  {
+    // L1
+    if(arm_joint_0_fwd_default_ + arm_joint_0_offset_ > 0.11)
+    {
+      arm_joint_0_offset_ -= 0.01;
+      arm_joint_state_msg_.position[0] = arm_joint_0_fwd_default_ + arm_joint_0_offset_;
+      arm_joint_state_msg_.position[1] = 1.331;
+      arm_joint_state_msg_.position[2] = -1.852;
+      arm_joint_state_msg_.position[3] = 2.797;
+      arm_joint_state_msg_.position[4] = 2.871;
+      arm_joint_state_msg_.position[5] = 0.0115;
+      arm_joint_state_msg_.position[6] = 0.0115;
+      arm_joint_state_publisher_->publish(arm_joint_state_msg_);
+    }
+  }
+  else if(msg->buttons[5] == 1)
+  {
+    // R1
+    if(arm_joint_0_fwd_default_ + arm_joint_0_offset_ < 5.8)
+    {
+      arm_joint_0_offset_ += 0.01;
+      arm_joint_state_msg_.position[0] = arm_joint_0_fwd_default_ + arm_joint_0_offset_;
+      arm_joint_state_msg_.position[1] = 1.331;
+      arm_joint_state_msg_.position[2] = -1.852;
+      arm_joint_state_msg_.position[3] = 2.797;
+      arm_joint_state_msg_.position[4] = 2.871;
+      arm_joint_state_msg_.position[5] = 0.0115;
+      arm_joint_state_msg_.position[6] = 0.0115;
+      arm_joint_state_publisher_->publish(arm_joint_state_msg_);
+    }
+  }
+
   SLEEP_MILLISEC(15);
 }
 
